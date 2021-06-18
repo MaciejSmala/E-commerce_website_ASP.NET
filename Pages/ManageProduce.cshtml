@@ -1,0 +1,22 @@
+﻿@page
+@model N0855975_assessment2.Pages.ManageProduceModel
+@{
+    ViewData["Title"] = "Manage the shop";
+}
+@foreach (var product in @Model.products)
+{
+<div class="card">
+    <img class="cardimgHome" src="/images/@product.ProductImage">
+    <h1>@product.Name</h1>
+    <p class="price">£@product.Price</p>
+    <p class="vat">@product.Vat %</p>
+    <p>@product.Description</p>
+
+    <a class="btn btn-sm btn-danger order-button float-left"
+       asp-route-id="@product.Id" asp-page-handler="Delete">Delete Product</a>
+
+    <a class="btn btn-sm btn-danger order-button float-right" asp-page="/UpdateProduct"
+       asp-route-id="@product.Id">Update Product</a>
+</div>
+
+}

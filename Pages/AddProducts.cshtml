@@ -1,0 +1,49 @@
+﻿@page
+@model N0855975_assessment2.Pages.AddProductsModel
+@{
+    ViewData["Title"] = "Add product";
+}
+<form method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Id</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.Id">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.Name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.Description">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Price</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.Price">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Vat</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.Vat">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">ProductImage</label>
+        <div class="col-sm-10">
+            <input class="form-control" asp-for="@Model.Product.ProductImage">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary order-button float-right">Register a Product</button>
+        </div>
+    </div>
+
+</form>

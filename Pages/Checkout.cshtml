@@ -1,0 +1,27 @@
+﻿@page
+@model N0855975_assessment2.Pages.CheckoutModel
+@{
+}
+<h1>Thank you for the purchase!</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.cart)
+        {
+        <tr>
+            <td>@item.Product.Name</td>
+            <td>@item.Quantity</td>
+            <td>@item.Product.Price</td>
+            <td>@(item.Product.Price * item.Quantity)</td>
+        </tr>
+        }
+    </tbody>
+
+</table>

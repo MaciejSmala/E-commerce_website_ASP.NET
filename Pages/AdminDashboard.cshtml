@@ -1,0 +1,65 @@
+﻿@page
+@model N0855975_assessment2.Pages.AdminDashboardModel
+@{
+
+    ViewData["Title"] = "Admin Dashboard";
+}
+<h1>Dashboard</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var role in Model.roles)
+        {
+            <tr>
+                <td>@role.Id</td>
+                <td>@role.Name</td>
+                <td>
+                    <a class="btn btn-sm btn-danger order-button float-right" asp-page="/AdminDashboard"
+                       asp-route-id="@role.Id" asp-page-handler="Delete">Delete Role</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<form method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Add a role</label>
+        <input class="form-control" asp-for="roleName">
+        <button type="submit" class="btn btn-primary order-button float-right">Add role</button>
+    </div>
+
+</form>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.UserName</td>
+                <td>
+                    <a class="btn btn-sm btn-danger order-button float-right" asp-page="/AdminDashboard"
+                       asp-route-id="@user.Id" asp-page-handler="DeleteUser">Delete user</a>
+                </td>
+                <td>
+                    <form method="post" asp-page-handler="Update" asp-route-id="@user.Id">
+                        <input asp-for="passwordString" />
+                        <input type="submit" value="Update Password" class="btn btn-default" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,45 @@
+﻿@page
+@model N0855975_assessment2.Pages.CartModel
+@{
+    ViewData["Title"] = "Shopping cart";
+}
+<h1>Shopping cart</h1>
+@if(Model.cart != null) { 
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Photo</th>
+                <th>Price</th>
+                <th>Quantity </th>
+                <th>Total</th>
+                <th>Remove</th>
+
+            </tr>
+        </thead>
+        <tbody class="table table-striped">
+            @{ int total = 0;}
+
+            @foreach (var item in Model.cart)
+            {
+                total += (int)item.Product.Price * item.Quantity;
+                <tr>
+                    <td>@item.Product.Id</td>
+                    <td>@item.Product.Name</td>
+                    <td><img class="cardimgCart" src="/images/@item.Product.ProductImage"></td>
+                    <td>@item.Product.Price</td>
+                    <td><input type="text" name="quantity" value="@item.Quantity" /></td>
+                    <td>@(item.Product.Price * item.Quantity)</td>
+                    <td><a class="btn btn-sm btn-danger order-button float-right" asp-page="/cart" asp-page-handler="Delete" asp-route-id="@item.Product.Id">Remove</a></td>
+                </tr>
+            }
+            <tr>
+                <td colspan="6" align="right">Total</td>
+                <td>@total£</td>
+            </tr>
+        </tbody>
+    </table>
+                }
+<a class="btn btn-sm btn-danger order-button float-left" asp-page="/Index">Continue Shopping</a>
+<a id="submit-purchase" class="btn btn-primary float-right" asp-page="/Checkout" asp-route-cart="@Model.cart">Checkout</a>

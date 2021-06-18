@@ -1,0 +1,33 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Game Store shop";
+}
+@using Microsoft.AspNetCore.Identity;
+@using N0855975_assessment2.Models;
+@inject SignInManager<AppUser> SignInManager;
+<label class="col-sm-2 control-label">Search bar</label>
+<form method="get" class="searchbar">
+    <div class="input-group">
+        <input class="form-control" asp-for="searchTerm" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
+@foreach (var product in @Model.products)
+{
+    <div class="card">
+        <img class="cardimgHome" src="/images/@product.ProductImage">
+        <h1>@product.Name</h1>
+        <p>@product.Price£</p>
+        <p class="vat">@product.Vat%</p>
+        <p>@product.Description</p>
+        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Visitor"))
+        {
+            <a class="btn btn-sm btn-danger order-button float-right" asp-page="/Cart" asp-page-handler="BuyNow"
+               asp-route-id="@product.Id">Add to basket</a>
+        }
+    </div>
+
+}
